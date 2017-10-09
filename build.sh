@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build --pull --tag kurron/clion-local:latest .
+docker build --tag saop-clion:latest .
 
