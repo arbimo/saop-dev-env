@@ -14,7 +14,10 @@ xhost +
 CMD="docker run --group-add ${DOCKER_GROUP_ID} \
                 --env HOME=/home/saop \
                 --env DISPLAY=unix${DISPLAY} \
-                 --cap-add=SYS_PTRACE \
+                --cap-add=SYS_PTRACE \
+                --privileged \
+                --security-opt seccomp:unconfined \
+                --security-opt apparmor:unconfined \
                 --interactive \
                 --name CLion \
                 --net "host" \
