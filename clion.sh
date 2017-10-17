@@ -3,6 +3,7 @@
 # Launches CLion inside a Docker container
 
 IMAGE=${1:-saop-clion:latest}
+CMD=${2}
 
 DOCKER_GROUP_ID=$(cut -d: -f3 < <(getent group docker))
 USER_ID=$(id -u $(whoami))
@@ -28,7 +29,7 @@ CMD="docker run --group-add ${DOCKER_GROUP_ID} \
                 --volume /tmp/.X11-unix:/tmp/.X11-unix \
                 --volume /var/run/docker.sock:/var/run/docker.sock \
                 --workdir /home/saop \
-                ${IMAGE}"
+                ${IMAGE} ${CMD}"
 
 echo $CMD
 $CMD
