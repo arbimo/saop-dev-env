@@ -2,8 +2,8 @@
 
 # Launches CLion inside a Docker container
 
-IMAGE=${1:-saop-clion:latest}
-CMD=${2}
+IMAGE=saop-clion:latest
+CMD=${1}
 
 DOCKER_GROUP_ID=$(cut -d: -f3 < <(getent group docker))
 USER_ID=$(id -u $(whoami))
@@ -20,7 +20,6 @@ CMD="docker run --group-add ${DOCKER_GROUP_ID} \
                 --security-opt seccomp:unconfined \
                 --security-opt apparmor:unconfined \
                 --interactive \
-                --name CLion \
                 --net "host" \
                 --rm \
                 --tty \
